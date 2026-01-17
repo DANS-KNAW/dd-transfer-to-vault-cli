@@ -13,19 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package nl.knaw.dans.transfercli.config;
 
-import io.dropwizard.core.Configuration;
+import io.dropwizard.client.JerseyClientConfiguration;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotNull;
-import java.util.Map;
+import java.net.URI;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class DdTransferToVaultCliConfig extends Configuration {
+public class TransferToVaultConfig {
     @NotNull
-    private Map<String, TransferToVaultConfig> pipelines;
+    private URI url;
+
+    @NotNull
+    private JerseyClientConfiguration httpClient;
 }

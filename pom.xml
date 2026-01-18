@@ -37,6 +37,7 @@
     <properties>
         <main-class>nl.knaw.dans.transfercli.DdTransferToVaultCli</main-class>
         <command-name>transfer</command-name>
+        <dd-transfer-to-vault-api.version>0.1.0</dd-transfer-to-vault-api.version>
     </properties>
 
     <scm>
@@ -165,7 +166,7 @@
                                 <artifactItem>
                                     <groupId>nl.knaw.dans</groupId>
                                     <artifactId>dd-transfer-to-vault-api</artifactId>
-                                    <version>${project.version}</version>
+                                    <version>${dd-transfer-to-vault-api.version}</version>
                                     <outputDirectory>${project.build.directory}/openapi</outputDirectory>
                                 </artifactItem>
                             </artifactItems>

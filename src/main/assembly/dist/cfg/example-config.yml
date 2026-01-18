@@ -1,11 +1,19 @@
 pipelines:
 #  example:
+#    isVaas: false
 #    url: http://localhost:20365/
 #    httpClient:
 #      timeout: 30s
 #      connectionTimeout: 15s
 #      timeToLive: 1h
 #      retries: 2
+
+directories:
+  collectInboxes: /var/opt/dans.knaw.nl/tmp/transfer-inboxes
+  vaasCollectInboxes: /var/opt/dans.knaw.nl/tmp/transfer-inboxes/vaas
+  workingSpaceBaseDir: /var/opt/dans.knaw.nl/tmp/dd-transfer-to-vault
+  dataVaultBatchRoot: /var/opt/dans.knaw.nl/tmp/dd-data-vault
+  dataVaultRoot: /data/vault
 
 #
 # See https://www.dropwizard.io/en/latest/manual/configuration.html#logging

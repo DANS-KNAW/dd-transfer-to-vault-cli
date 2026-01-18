@@ -17,11 +17,16 @@ package nl.knaw.dans.transfercli;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import nl.knaw.dans.transfercli.client.DefaultApi;
+import nl.knaw.dans.transfercli.config.DdTransferToVaultCliConfig;
 
 public interface Context {
 
     DefaultApi getApi();
 
     ObjectMapper getObjectMapper();
+
+    DdTransferToVaultCliConfig getConfig();
+
+    String getPipeline();
 
 }

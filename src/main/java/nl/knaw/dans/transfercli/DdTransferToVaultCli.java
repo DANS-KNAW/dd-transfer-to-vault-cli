@@ -28,6 +28,7 @@ import nl.knaw.dans.lib.util.PicocliVersionProvider;
 import nl.knaw.dans.transfercli.client.ApiClient;
 import nl.knaw.dans.transfercli.client.DefaultApi;
 import nl.knaw.dans.transfercli.command.FlushWorkToVault;
+import nl.knaw.dans.transfercli.command.TransferStatus;
 import nl.knaw.dans.transfercli.config.DdTransferToVaultCliConfig;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
@@ -51,10 +52,22 @@ public class DdTransferToVaultCli extends AbstractCommandLineApp<DdTransferToVau
 
     private Map<String, DefaultApi> pipelines;
 
+    private DdTransferToVaultCliConfig config;
+
     @Option(names = { "-p", "--pipeline" },
             description = "The pipeline (dd-transfer-to-vault) instance to execute the command on.")
     @Setter
     private String pipeline;
+
+    @Override
+    public DdTransferToVaultCliConfig getConfig() {
+        return this.config;
+    }
+
+    @Override
+    public String getPipeline() {
+        return this.pipeline;
+    }
 
     @Override
     public DefaultApi getApi() {
@@ -63,14 +76,12 @@ public class DdTransferToVaultCli extends AbstractCommandLineApp<DdTransferToVau
         }
 
         if (this.pipeline == null) {
-            System.err.println("No instance specified. Use -i or --instance option.");
-            throw new IllegalArgumentException("No instance specified.");
+            throw new IllegalArgumentException("No pipeline specified. Use -p or --pipeline option.");
         }
 
         var api = pipelines.get(this.pipeline);
         if (api == null) {
-            System.err.println("No instance found for " + this.pipeline);
-            throw new IllegalArgumentException("No instance found for " + this.pipeline);
+            throw new IllegalArgumentException("No pipeline found for: " + this.pipeline);
         }
         return api;
     }
@@ -82,6 +93,7 @@ public class DdTransferToVaultCli extends AbstractCommandLineApp<DdTransferToVau
     @Override
     public void configureCommandLine(CommandLine commandLine, DdTransferToVaultCliConfig config) {
         log.debug("Configuring command line");
+        this.config = config;
         objectMapper.registerModule(new JavaTimeModule());
         objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 
@@ -94,5 +106,6 @@ public class DdTransferToVaultCli extends AbstractCommandLineApp<DdTransferToVau
                 .build()));
 
         commandLine.addSubcommand(new FlushWorkToVault(this));
+        commandLine.addSubcommand(new TransferStatus(this));
     }
 }

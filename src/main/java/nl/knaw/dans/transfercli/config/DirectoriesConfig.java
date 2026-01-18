@@ -13,22 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package nl.knaw.dans.transfercli.config;
 
-import io.dropwizard.core.Configuration;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import javax.validation.constraints.NotNull;
-import java.util.Map;
+import java.nio.file.Path;
 
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class DdTransferToVaultCliConfig extends Configuration {
+public class DirectoriesConfig {
     @NotNull
-    private Map<String, TransferToVaultConfig> pipelines;
+    private Path collectInboxes;
+
+    private Path vaasCollectInboxes;
 
     @NotNull
-    private DirectoriesConfig directories;
+    private Path workingSpaceBaseDir;
+
+    @NotNull
+    private Path dataVaultBatchRoot;
+
+    @NotNull
+    private Path dataVaultRoot;
 }

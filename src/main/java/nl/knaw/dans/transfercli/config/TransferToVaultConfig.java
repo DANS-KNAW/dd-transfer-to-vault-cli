@@ -28,4 +28,6 @@ public class TransferToVaultConfig {
 
     @NotNull
     private JerseyClientConfiguration httpClient;
+
+    private boolean isVaas;
 }

@@ -125,7 +125,7 @@ public class TransferStatus implements Callable<Integer> {
                     .forEach(batch -> {
                         String batchName = batch.getFileName().toString();
                         long inboxCount = 0;
-                        String inboxSize = "0 bytes";
+                        String inboxSize = "0   ";
                         try (Stream<Path> s = Files.list(batch)) {
                             inboxCount = s.filter(Files::isDirectory).count();
                             inboxSize = FileUtils.byteCountToDisplaySize(FileUtils.sizeOfDirectory(batch.toFile()));
@@ -137,7 +137,7 @@ public class TransferStatus implements Callable<Integer> {
                         Path failedDir = outboxBase.resolve(batchName).resolve("failed");
 
                         long processedCount = 0;
-                        String processedSize = "0 bytes";
+                        String processedSize = "0   ";
                         if (Files.exists(processedDir)) {
                             try (Stream<Path> s = Files.list(processedDir)) {
                                 processedCount = s.filter(Files::isDirectory).count();
@@ -148,7 +148,7 @@ public class TransferStatus implements Callable<Integer> {
                         }
 
                         long failedCount = 0;
-                        String failedSize = "0 bytes";
+                        String failedSize = "0   ";
                         if (Files.exists(failedDir)) {
                             try (Stream<Path> s = Files.list(failedDir)) {
                                 failedCount = s.filter(Files::isDirectory).count();

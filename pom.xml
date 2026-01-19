@@ -26,7 +26,7 @@
     </parent>
 
     <artifactId>dd-transfer-to-vault-cli</artifactId>
-    <version>0.2.1-SNAPSHOT</version>
+    <version>0.2.1</version>
 
     <name>DD Transfer To Vault CLI</name>
     <url>https://github.com/DANS-KNAW/dd-transfer-to-vault-cli</url>
@@ -41,7 +41,7 @@
 
     <scm>
         <developerConnection>scm:git:ssh://github.com/DANS-KNAW/dd-transfer-to-vault-cli</developerConnection>
-        <tag>HEAD</tag>
+        <tag>v0.2.1</tag>
     </scm>
 
     <dependencies>

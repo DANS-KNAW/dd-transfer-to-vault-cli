@@ -116,7 +116,7 @@ public class TransferStatus implements Callable<Integer> {
         Path inboxBase = dataVaultBatchRoot.resolve("inbox");
         Path outboxBase = dataVaultBatchRoot.resolve("outbox");
 
-        System.out.printf("%-20s %-5s %-5s     %-9s %-6s %-5s %-6s%n", "BATCH", "INBOX", "(SIZE)", "PROCESSED", "(SIZE)", "FAILED", "(SIZE)");
+        System.out.printf("%-20s %6s %-12s %10s %-12s %7s %-11s%n", "BATCH", "INBOX", "(SIZE)", "PROCESSED", "(SIZE)", "FAILED", "(SIZE)");
 
         if (Files.exists(inboxBase)) {
             try (Stream<Path> stream = Files.list(inboxBase)) {
@@ -125,7 +125,7 @@ public class TransferStatus implements Callable<Integer> {
                     .forEach(batch -> {
                         String batchName = batch.getFileName().toString();
                         long inboxCount = 0;
-                        String inboxSize = "0   ";
+                        String inboxSize = "0 bytes";
                         try (Stream<Path> s = Files.list(batch)) {
                             inboxCount = s.filter(Files::isDirectory).count();
                             inboxSize = FileUtils.byteCountToDisplaySize(FileUtils.sizeOfDirectory(batch.toFile()));
@@ -137,7 +137,7 @@ public class TransferStatus implements Callable<Integer> {
                         Path failedDir = outboxBase.resolve(batchName).resolve("failed");
 
                         long processedCount = 0;
-                        String processedSize = "0   ";
+                        String processedSize = "0 bytes";
                         if (Files.exists(processedDir)) {
                             try (Stream<Path> s = Files.list(processedDir)) {
                                 processedCount = s.filter(Files::isDirectory).count();
@@ -148,7 +148,7 @@ public class TransferStatus implements Callable<Integer> {
                         }
 
                         long failedCount = 0;
-                        String failedSize = "0   ";
+                        String failedSize = "0 bytes";
                         if (Files.exists(failedDir)) {
                             try (Stream<Path> s = Files.list(failedDir)) {
                                 failedCount = s.filter(Files::isDirectory).count();
@@ -159,11 +159,11 @@ public class TransferStatus implements Callable<Integer> {
                         }
 
                         if (allBatches || inboxCount > 0 || failedCount > 0) {
-                            System.out.printf("%-20s %5d %5s      %9d %5s  %6d %5s%n",
+                            System.out.printf("%-20s %6d (%-11s %10d (%-11s %7d (%s%n",
                                 batchName,
-                                inboxCount, inboxSize,
-                                processedCount, processedSize,
-                                failedCount, failedSize);
+                                inboxCount, inboxSize + ")",
+                                processedCount, processedSize + ")",
+                                failedCount, failedSize + ")");
                         }
                     });
             }

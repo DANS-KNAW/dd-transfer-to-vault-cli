@@ -120,8 +120,8 @@ class TransferStatusTest {
             assertThat(output).contains("transfer inbox");
             assertThat(output).contains("extract metadata inbox        : 1 items");
             assertThat(output).contains("* dd-data-vault:");
-            assertThat(output).contains("batch1                   1");
-            assertThat(output).contains("0 bytes");
+            assertThat(output).contains("BATCH                 INBOX (SIZE)        PROCESSED (SIZE)        FAILED (SIZE)");
+            assertThat(output).contains("batch1                    1 (0 bytes)             0 (0 bytes)          0 (0 bytes)");
             assertThat(output).contains("---");
         } finally {
             System.setOut(oldOut);

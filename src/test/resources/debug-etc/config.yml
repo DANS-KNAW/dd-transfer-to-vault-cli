@@ -7,6 +7,14 @@ pipelines:
       timeToLive: 1h
       retries: 2
 
+directories:
+  collectInboxes: ../dd-transfer-to-vault/data/01_transfer-inbox
+  vaasCollectInboxes: ../dd-transfer-to-vault/data/01_transfer-inbox/vaas
+  workingSpaceBaseDir: ../dd-data-vault/data/ingest/inbox
+  dataVaultBatchRoot: ../dd-data-vault/data/ingest/inbox
+  dataVaultRoot: ../data/vault
+
+
 #
 # See https://www.dropwizard.io/en/latest/manual/configuration.html#logging
 #

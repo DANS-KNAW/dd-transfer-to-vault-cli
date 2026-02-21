@@ -68,7 +68,7 @@ public class TransferStatus implements Callable<Integer> {
         statusLine(workingSpaceBaseDir.resolve("extract-metadata/inbox"), "extract metadata inbox");
         statusLine(workingSpaceBaseDir.resolve("extract-metadata/outbox/failed"), "extract metadata failed", "*.zip");
         statusLine(workingSpaceBaseDir.resolve("extract-metadata/outbox/rejected"), "extract metadata rejected", "*.zip");
-        statusLine(workingSpaceBaseDir.resolve("send-to-vault/inbox"), "send to vault inbox", "*.zip");
+        statusLine(workingSpaceBaseDir.resolve("send-to-vault/inbox"), "send to vault inbox");
         statusLine(workingSpaceBaseDir.resolve("send-to-vault/outbox/processed"), "send to vault processed", "*.zip");
         statusLine(workingSpaceBaseDir.resolve("send-to-vault/outbox/failed"), "send to vault failed", "*.zip");
         statusLine(workingSpaceBaseDir.resolve("send-to-vault/work"), "send to vault work");

@@ -22,7 +22,17 @@ repo_name: DANS-KNAW/dd-transfer-to-vault-cli
 repo_url: https://github.com/DANS-KNAW/dd-transfer-to-vault-cli
 
 nav:
-  - Manual: index.md
+  - Manual:
+      - Introduction: index.md
+      - Description: description.md
+      - Installation: installation.md
+      - Context: context.md
+  - Development:
+      - Overview: dev.md
+
+extra:
+  transfer_to_vault_api: https://dans-knaw.github.io/dd-transfer-to-vault/swagger-ui/
+
 
 plugins:
   - markdownextradata

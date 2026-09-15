@@ -30,7 +30,7 @@
 
     <name>DD Transfer To Vault CLI</name>
     <description>CLI for dd-transfer-to-vault</description>
-    <url>https://github.com/DANS-KNAW/dd-transfer-to-vault-cli</url>
+    <url>https://dans-knaw.github.io/dd-transfer-to-vault-cli</url>
     <inceptionYear>2026</inceptionYear>
 
     <scm>

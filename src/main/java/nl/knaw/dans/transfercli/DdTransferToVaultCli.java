@@ -99,10 +99,10 @@ public class DdTransferToVaultCli extends AbstractCommandLineApp<DdTransferToVau
 
         this.pipelines = config.getPipelines().entrySet().stream()
             .collect(Collectors.toMap(Map.Entry::getKey, e -> new ClientProxyBuilder<ApiClient, DefaultApi>()
-                .apiClient(new ApiClient())
+                .apiClientCtor(ApiClient::new)
                 .basePath(e.getValue().getUrl())
                 .httpClient(e.getValue().getHttpClient())
-                .defaultApiCtor(DefaultApi::new)
+                .proxyCtor(DefaultApi::new)
                 .build()));
 
         commandLine.addSubcommand(new FlushWorkToVault(this));
